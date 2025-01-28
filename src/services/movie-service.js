@@ -1,5 +1,6 @@
 import movies from '../movies.js';
 import { v4 as uuid} from 'uuid';
+import Movie from '../models/Movie.js'
 
 
 export default {
@@ -10,7 +11,6 @@ export default {
 },
 
     create(movieData){
-        //TODO add ids
         const newId = uuid()
         movies.push({
             id: newId,
@@ -20,18 +20,22 @@ export default {
         return newId;
     },
     
-    getAll(filter = {}){
-        let result = movies;
-        if(filter.search){
-            result = result.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
-        };
-        if(filter.genre){
-            result = result.filter(movie => movie.genre.toLowerCase() === filter.genre.toLowerCase());
-        };
-        if(filter.year){
-            result = result.filter(movie => movie.year === filter.year);
-        }
+   getAll(filter = {}){
+        let result =  Movie.find({});
 
+       
+
+
+        //TODO filter
+        // if(filter.search){
+        //     result = result.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
+        // };
+        // if(filter.genre){
+        //     result = result.filter(movie => movie.genre.toLowerCase() === filter.genre.toLowerCase());
+        // };
+        // if(filter.year){
+        //     result = result.filter(movie => movie.year === filter.year);
+        // }
 
         return result;
     }

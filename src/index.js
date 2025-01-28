@@ -9,6 +9,10 @@ const app = express();
 //handlebars config
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
+    //Option 3, without lean, set in handlebars
+    // runtimeOptions:{
+    //     allowProtoPropertiesByDefault: true,
+    // },
     helpers: {
         showRating: showRatingHelper,
     }
