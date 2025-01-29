@@ -4,6 +4,7 @@ import movieService from '../services/movie-service.js';
 const router = Router();
 
 router.get('/', async (req, res) => {
+    //Option 2 - with lean method on the query
     const movies = await movieService.getAll().lean();
 
      //Option 1: convert documents to plain objects

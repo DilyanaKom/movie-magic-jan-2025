@@ -4,9 +4,9 @@ import Movie from '../models/Movie.js'
 
 
 export default {
-    findOne(movieId){
+    getOne(movieId){
         //TODO case when movie is missing
-        const result = movies.find(movie => movie.id === movieId);
+        const result = Movie.findById(movieId);
         return result;
 },
 
