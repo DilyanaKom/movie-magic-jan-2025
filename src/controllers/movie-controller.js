@@ -24,7 +24,7 @@ movieController.post('/create', async (req, res) => {
 
 movieController.get('/:movieId/details', async (req, res) => {
     const movieId = req.params.movieId;
-    const movie = await movieService.getOne(movieId).populate('casts').lean();
+    const movie = await movieService.getOne(movieId).populate('casts.cast').lean();
     res.render('movie/details', {movie});
 });
 
@@ -39,7 +39,8 @@ movieController.get('/:movieId/attach-cast', async (req, res) => {
 movieController.post('/:movieId/attach-cast', async (req, res) => {
     const castId = req.body.cast;
     const movieId = req.params.movieId;
-    await movieService.attachCast(castId, movieId);
+    const character = req.body.character;
+    await movieService.attachCast(castId, movieId, character);
     res.redirect(`/movies/${movieId}/details`);
 
 })

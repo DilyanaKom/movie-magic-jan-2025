@@ -10,11 +10,19 @@ const movieSchema = new Schema({
     imageURl: String,
     rating: Number,
     description: String,
-    casts: [{
-        type: Types.ObjectId,
-        ref: 'Cast',
+    // casts: [{
+    //     type: Types.ObjectId,
+    //     ref: 'Cast',
 
-    }]
+    // }],
+    casts: [{
+        _id: false,
+        character: String,
+        cast: {
+            type: Types.ObjectId,
+            ref: 'Cast',
+        }
+    }],
 });
 
 //Create model
