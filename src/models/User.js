@@ -6,7 +6,7 @@ const userSchema = new Schema({
     password: String,
 });
 
-//edgecase if there is a functionality to update email, then the saved hash would be hashed
+//TODO fix update user email
 userSchema.pre('save', async function(){
     this.password = await bcrypt.hash(this.password, 10);
 });
