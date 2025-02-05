@@ -1,5 +1,6 @@
 import { Router } from "express";
 import authService from "../services/auth-service.js";
+import { trusted } from "mongoose";
 
 const authController = Router();
 
@@ -23,7 +24,7 @@ authController.post('/login', async (req, res) => {
 
     try{
        const token =  await authService.login(email, password);
-       res.cookie('auth', token);
+       res.cookie('auth', token, {httpOnly: true});
        res.redirect('/');
     } catch(err){
         console.log(err.message);
