@@ -35,7 +35,7 @@ export default {
         return query;
     },
 
-    async attachCast(castId, movieId, character){
+   attachCast(castId, movieId, character){
         //Option 1
         // const movie = await Movie.findById(movieId);
         // movie.casts.push(castId);
@@ -52,6 +52,11 @@ export default {
     }});
 
 
+    },
+    delete(movieId){
+        return Movie.findByIdAndDelete(movieId);
     }
+
+
 
 };
