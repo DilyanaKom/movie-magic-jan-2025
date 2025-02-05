@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 import routes from './routes.js';
 import showRatingHelper from './helpers/rating-helper.js';
-
+import cookieParser from 'cookie-parser';
 const app = express();
 
 //handlebars config
@@ -24,7 +24,7 @@ app.set('views', './src/views');
 //express config
 app.use('/static', express.static('src/public'));
 app.use(express.urlencoded({extended: false}));
-
+app.use(cookieParser());
 
 //db config 
 try {
