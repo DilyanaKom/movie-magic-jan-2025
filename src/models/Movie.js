@@ -7,7 +7,7 @@ const movieSchema = new Schema({
     genre: String,
     director: String,
     year: Number,
-    imageURl: String,
+    imageUrl: String,
     rating: Number,
     description: String,
     // casts: [{
