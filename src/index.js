@@ -2,9 +2,13 @@ import express from 'express';
 import handlebars from 'express-handlebars';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import cookieParser from 'cookie-parser';
+
 import routes from './routes.js';
 import showRatingHelper from './helpers/rating-helper.js';
-import cookieParser from 'cookie-parser';
+import { authMiddleware } from './middlewares/auth-middleware.js';
+
+
 const app = express();
 
 //handlebars config
@@ -25,6 +29,7 @@ app.set('views', './src/views');
 app.use('/static', express.static('src/public'));
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(authMiddleware);
 
 //db config 
 try {

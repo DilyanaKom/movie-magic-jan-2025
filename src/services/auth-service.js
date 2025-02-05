@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const SECRET = '89c83addfd670ffa69170ce0250b77b8727ab54f8e749a41ca985fd8f1312b51';
+const SECRET = process.env.JWT_SECRET || 'BASICSECRET';
 
 export default{
     register(userData){
@@ -24,7 +24,7 @@ export default{
 
         //generate token
         const payload = {
-            id: user.id,
+            id: user._id,
             email: user.email,
         };
         //TODO use async option
