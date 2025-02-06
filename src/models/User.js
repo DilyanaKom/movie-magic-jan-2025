@@ -2,11 +2,19 @@ import { Schema, model } from 'mongoose';
 import bcrypt from 'bcrypt';
 
 const userSchema = new Schema({
-    email: String,
-    password: String,
+    email: {
+        type: String,
+        match: /\@[a-zA-Z]+.[a-zA-Z]+$/,
+        minLength: 10,
+    },
+    password: {
+        type: String,
+        match: /^\w+$/,
+        minLength: 6,
+
+    },
 });
 
-//TODO fix update user email
 userSchema.pre('save', async function(){
     this.password = await bcrypt.hash(this.password, 10);
 });
