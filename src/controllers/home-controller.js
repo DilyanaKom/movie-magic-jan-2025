@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/about', (req, res) =>{
-    res.render('about')
+    res.render('about', { title: 'About'});
 });
 
 export default router;
