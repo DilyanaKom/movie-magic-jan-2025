@@ -2,14 +2,49 @@ import { Schema, model, Types } from 'mongoose';
 
 //Create schema
 const movieSchema = new Schema({
-    title: String,
+    title: {
+        type: String,
+        required: [true, 'Title is required!'],
+        minLength: [5, 'Title should be min 5 characters long!'],
+        match: /^[a-zA-Z 0-9]+$/
+
+    },
     category: String,
-    genre: String,
-    director: String,
-    year: Number,
-    imageUrl: String,
-    rating: Number,
-    description: String,
+    genre: {
+        type: String,
+        required: [true, 'Genre is required!'],
+        minLength: [5, 'Genre should be min 5 characters long!'],
+        match: /^[a-zA-Z 0-9]+$/
+
+    },
+    director: {
+        type: String,
+        minLength: [5, 'Director should be min 5 characters long!'],
+        match: /^[a-zA-Z 0-9]+$/
+
+    },
+    year: {
+        type: Number,
+        min: 1900,
+        max: 2024.
+
+    },
+    imageUrl: {
+        type: String,
+        match:/^https?:\/\//,
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10,
+    },
+    description: {
+        type: String,
+        minLength: [20,'Description should be min 20 characters long!'],
+        match: /^[a-zA-Z 0-9]+$/,
+
+
+    },
     // casts: [{
     //     type: Types.ObjectId,
     //     ref: 'Cast',
