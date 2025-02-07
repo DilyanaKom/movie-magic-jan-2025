@@ -35,6 +35,7 @@ export const authMiddleware = (req, res, next) => {
 
 export const isAuth = (req, res, next) =>{
     if(!req.user){
+        res.serError('You must be logged in');
         return res.redirect('login');
     };
 
