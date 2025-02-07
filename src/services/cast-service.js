@@ -11,8 +11,8 @@ export default {
         return query;
 
     },
-    create(castData){
-        Cast.create(castData);
+   async create(castData){
+        await Cast.create(castData);
         return;
     }
 }

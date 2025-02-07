@@ -22,8 +22,14 @@ movieController.get('/create',  isAuth, (req, res) => {
 movieController.post('/create', isAuth, async (req, res) => {
     const newMovie = req.body;
     const userId = req.user?.id;
-    await movieService.create(newMovie, userId);
-    res.redirect('/');
+    try{
+        await movieService.create(newMovie, userId);
+        res.redirect('/');
+    } catch (err){
+        const categories = getCategoryViewData(newMovie.category)
+        return res.render('create', {categories, movie: newMovie, error: getErrorMessage(err)});
+    }
+   
 })
 
 movieController.get('/:movieId/details', async (req, res) => {
@@ -45,7 +51,13 @@ movieController.post('/:movieId/attach-cast',  isAuth,async (req, res) => {
     const castId = req.body.cast;
     const movieId = req.params.movieId;
     const character = req.body.character;
-    await movieService.attachCast(castId, movieId, character);
+    try{
+        await movieService.attachCast(castId, movieId, character);
+    }catch(err){
+        const error = getErrorMessage(err);
+        res.render('movie/attach-cast', {error});
+    }
+    
     res.redirect(`/movies/${movieId}/details`);
 
 });

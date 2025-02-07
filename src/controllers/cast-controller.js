@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import castService from '../services/cast-service.js';
 import { isAuth } from '../middlewares/auth-middleware.js';
+import { getErrorMessage } from '../utils/error-utils.js';
 
 const castController = Router();
 
@@ -11,9 +12,13 @@ castController.get('/create', (req, res) => {
 });
 castController.post('/create', async(req, res) => {
     const castData = req.body;
-    await castService.create(castData);
-    console.log(castData);
-    res.redirect('/');
+    try{
+        await castService.create(castData);
+        return res.redirect('/');
+    } catch(err){
+        const error = getErrorMessage(err);
+        return res.render('cast/create', {error});
+    }  
 })
 
 
