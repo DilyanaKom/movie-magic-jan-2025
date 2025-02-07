@@ -17,7 +17,7 @@ const castSchema = new Schema({
    born: {
       type: String,
       minLength: [10,'Place of birth must be min 10 characters long'],
-      match: /^[a-zA-Z 0-9]+$/,
+      match: /^[a-zA-Z0-9 ,.-]+$/,
       
    },
    imageUrl: {  

@@ -17,7 +17,7 @@ castController.post('/create', async(req, res) => {
         return res.redirect('/');
     } catch(err){
         const error = getErrorMessage(err);
-        return res.render('cast/create', {error});
+        return res.render('cast/create', {error, actor: castData});
     }  
 })
 

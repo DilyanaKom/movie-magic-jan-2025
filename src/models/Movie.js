@@ -25,8 +25,8 @@ const movieSchema = new Schema({
     },
     year: {
         type: Number,
-        min: 1900,
-        max: 2024.
+        min: [1900, 'Year must be between 1900 - 2024'],
+        max: [2024, 'Year must be between 1900 - 2024']
 
     },
     imageUrl: {
@@ -41,7 +41,7 @@ const movieSchema = new Schema({
     description: {
         type: String,
         minLength: [20,'Description should be min 20 characters long!'],
-        match: /^[a-zA-Z 0-9]+$/,
+        match: /^[a-zA-Z0-9 ,.-]+$/,
 
 
     },
